@@ -1,5 +1,5 @@
 {
-  "name": "@ethvault/iframe-provider",
+  "name": "@ledgerhq/iframe-provider",
   "version": "0.1.10",
   "main": "dist/index.js",
   "module": "dist/ethereumprovider.esm.js",

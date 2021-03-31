@@ -192,15 +192,17 @@ export class IFrameEthereumProvider extends EventEmitter<
    * Helper method that handles transport and request wrapping
    * @param method method to execute
    * @param params params to pass the method
+   * @param requestId jsonrpc request id
    */
   private async execute<TParams, TResult, TErrorData>(
     method: string,
-    params?: TParams
+    params?: TParams,
+    requestId?: MessageId
   ): Promise<
     | JsonRpcSucessfulResponseMessage<TResult>
     | JsonRpcErrorResponseMessage<TErrorData>
   > {
-    const id = getUniqueId();
+    const id = requestId ? requestId : getUniqueId();
     const payload: JsonRpcRequestMessage = {
       jsonrpc: JSON_RPC_VERSION,
       id,
@@ -274,14 +276,18 @@ export class IFrameEthereumProvider extends EventEmitter<
    * @param callback callback to be called when the provider resolves
    */
   public async sendAsync(
-    payload: { method: string; params?: any[] },
+    payload: { method: string; params?: any[]; id?: MessageId },
     callback: (
       error: string | null,
       result: { method: string; params?: any[]; result: any } | any
     ) => void
   ): Promise<void> {
     try {
-      const result = await this.execute(payload.method, payload.params);
+      const result = await this.execute(
+        payload.method,
+        payload.params,
+        payload.id
+      );
 
       callback(null, result);
     } catch (error) {
