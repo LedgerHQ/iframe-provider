@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ethvault/iframe-provider"
+    "url": "https://github.com/ledgerhq/iframe-provider"
   },
   "peerDependencies": {},
   "husky": {
