@@ -1,6 +1,6 @@
 {
   "name": "@ledgerhq/iframe-provider",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "dist/index.js",
   "module": "dist/ethereumprovider.esm.js",
   "typings": "dist/index.d.ts",
