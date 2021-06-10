@@ -3,7 +3,7 @@ import { EventEmitter } from 'eventemitter3';
 // By default post to any origin
 const DEFAULT_TARGET_ORIGIN = '*';
 // By default timeout is 60 seconds
-const DEFAULT_TIMEOUT_MILLISECONDS = 60000;
+const DEFAULT_TIMEOUT_MILLISECONDS = 240000;
 
 const JSON_RPC_VERSION = '2.0';
 
