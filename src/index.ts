@@ -23,7 +23,7 @@ export interface MinimalEventTargetInterface {
 /**
  * Options for constructing the iframe ethereum provider.
  */
-interface IFrameEthereumProviderOptions {
+export interface IFrameEthereumProviderOptions {
   // The origin to communicate with. Default '*'
   targetOrigin?: string;
   // How long to time out waiting for responses. Default 60 seconds.
