@@ -252,6 +252,22 @@ export class IFrameEthereumProvider extends EventEmitter<
   }
 
   /**
+   * EIP-1193 request interface to send request.
+   * https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#request
+   * @param method
+   * @param params
+   */
+  public async request({
+    method,
+    params,
+  }: {
+    method: string;
+    params?: readonly unknown[] | object;
+  }): Promise<unknown> {
+    return this.send(method, params)
+  }
+
+  /**
    * Request the parent window to enable access to the user's web3 provider. Return accounts list immediately if already enabled.
    */
   public async enable(): Promise<string[]> {
