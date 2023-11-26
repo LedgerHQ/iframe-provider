@@ -234,6 +234,27 @@ export class IFrameEthereumProvider extends EventEmitter<
   }
 
   /**
+   * EIP-1193 request interface to send request.
+   * https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#request
+   * @param method
+   * @param params
+   */
+  public async request<TParams = any[], TResult = any>(
+    method: string,
+    params?: TParams
+  ): Promise<TResult> {
+    const response = await this.execute<TParams, TResult, any>(method, params);
+
+    if ('error' in response) {
+      throw new RpcError(response.error.code, response.error.message);
+    } else {
+      return response.result;
+    }
+  }
+
+  /**
+   * Depreciated. Backwards compatibility method for web3.
+   * https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#appendix-iii-legacy-provider-api
    * Send the JSON RPC and return the result.
    * @param method method to send to the parent provider
    * @param params parameters to send
@@ -271,7 +292,8 @@ export class IFrameEthereumProvider extends EventEmitter<
   }
 
   /**
-   * Backwards compatibility method for web3.
+   * Depreciated. Backwards compatibility method for web3.
+   * https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#appendix-iii-legacy-provider-api
    * @param payload payload to send to the provider
    * @param callback callback to be called when the provider resolves
    */
