@@ -236,13 +236,17 @@ export class IFrameEthereumProvider extends EventEmitter<
   /**
    * EIP-1193 request interface to send request.
    * https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1193.md#request
-   * @param method
-   * @param params
+   * @param args request arguments
+   * @param args.method method to send to the parent provider
+   * @param args.params parameters to send
    */
-  public async request<TParams = any[], TResult = any>(
-    method: string,
-    params?: TParams
-  ): Promise<TResult> {
+  public async request<TParams = any[], TResult = any>({
+    method,
+    params,
+  }: {
+    method: string;
+    params?: TParams;
+  }): Promise<TResult> {
     const response = await this.execute<TParams, TResult, any>(method, params);
 
     if ('error' in response) {
